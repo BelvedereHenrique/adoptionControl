@@ -14,7 +14,10 @@ namespace Desafio.Repository.Animal
             {
                 using (var context = new DatabaseContext())
                 {
-                    return context.Animals.First(x=>x.ID == animalID);
+                    var animal = context.Animals.Include("Adopter").First(x=>x.ID == animalID);
+                    //this prevents cyclic reference
+                    animal.Adopter = null;
+                    return animal;
                 }
             }
             catch (Exception e)
@@ -29,7 +32,10 @@ namespace Desafio.Repository.Animal
             {
                 using (var context = new DatabaseContext())
                 {
-                    return context.Animals.ToList();
+                    var animals = context.Animals.Include("Adopter").ToList();
+                    //this prevents cyclic reference
+                    animals.ForEach(x=>x.Adopter = null);
+                    return animals;
                 }
             }
             catch (Exception e)
@@ -92,8 +98,10 @@ namespace Desafio.Repository.Animal
         private void MapUpdatedFields(AnimalContract updatedAnimal, AnimalContract oldAnimal)
         {
             oldAnimal.Name = updatedAnimal.Name;
-            oldAnimal.Type = updatedAnimal.Type;
             oldAnimal.Weight = updatedAnimal.Weight;
+            oldAnimal.Age = updatedAnimal.Age;
+            oldAnimal.AnimalType = updatedAnimal.AnimalType;
+            oldAnimal.AdoptedBy = updatedAnimal.AdoptedBy;
         }
     }
 }

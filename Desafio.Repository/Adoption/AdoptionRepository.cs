@@ -8,13 +8,21 @@ namespace Desafio.Repository.Adoption
 {
     public class AdoptionRepository : IAdoptionRepository
     {
-        public AdoptionContract Get(Guid adoptionID)
+        public AdoptionContract Get(Guid animalID)
         {
             try
             {
                 using (var context = new DatabaseContext())
                 {
-                    return context.Adoptions.First(x => x.ID == adoptionID);
+                    var animals = context.Animals.Where(x => x.AdoptedBy != null);
+                    return null; 
+                    //context.Adopters
+                    //    .Where(x => animals.Any(y => y.AdoptedBy == x.ID))
+                    //    .Select(x => new AdoptionContract()
+                    //    {
+                    //        Adopter = x,
+                    //        Animals = animals.Where(z => z.AdoptedBy == x.ID).ToList()
+                    //    }).First();
                 }
             }
             catch (Exception e)
@@ -29,7 +37,19 @@ namespace Desafio.Repository.Adoption
             {
                 using (var context = new DatabaseContext())
                 {
-                    return context.Adoptions.ToList();
+                    return null;
+                    ////var animals = .ToList();
+                    //var adopters = context.Adopters.Where(x => context.Animals.Where(z => z.AdoptedBy != null).Any(y => y.AdoptedBy == x.ID)).ToList();
+                    //var list = new List<AdoptionContract>();
+                    //foreach (var item in adopters)
+                    //{
+                    //    list.Add(new AdoptionContract()
+                    //    {
+                    //        Adopter = item,
+                    //        Animal = item.a
+                    //    });
+                    //}
+                    //return list;
                 }
             }
             catch (Exception e)
@@ -38,30 +58,15 @@ namespace Desafio.Repository.Adoption
             }
         }
 
-        public void Add(AdoptionContract adoptionContract)
+        public void Adopt(Guid adopter, Guid animal)
         {
             try
             {
                 using (var context = new DatabaseContext())
                 {
-                    context.Adoptions.Add(adoptionContract);
-                    context.SaveChanges();
-                }
-            }
-            catch (Exception e)
-            {
-                throw e;
-            }
-        }
+                    var newAnimal = context.Animals.First(x => x.ID == animal);
+                    newAnimal.AdoptedBy = adopter;
 
-        public void Delete(Guid adoptionID)
-        {
-            try
-            {
-                using (var context = new DatabaseContext())
-                {
-                    var adoption = context.Adoptions.First(x => x.ID == adoptionID);
-                    context.Adoptions.Remove(adoption);
                     context.SaveChanges();
                 }
             }

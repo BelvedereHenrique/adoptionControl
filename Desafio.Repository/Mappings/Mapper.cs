@@ -1,4 +1,6 @@
-﻿namespace Desafio.Repository.Mappings
+﻿using Desafio.Contracts;
+
+namespace Desafio.Repository.Mappings
 {
     internal static class Mapper
     {
@@ -18,12 +20,6 @@
             }
         }
 
-        public static AdoptionMapping Adoption
-        {
-            get
-            {
-                return new AdoptionMapping();
-            }
-        }
+
     }
 }

@@ -25,6 +25,15 @@ namespace Desafio
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
+
+            bundles.Add(new StyleBundle("~/Scripts/Adopters").Include(
+                      "~/Scripts/Site/adopters.js"));
+
+            bundles.Add(new StyleBundle("~/Scripts/Animals").Include(
+                "~/Scripts/Site/animals.js"));
+
+            bundles.Add(new StyleBundle("~/Scripts/Adoptions").Include(
+                "~/Scripts/Site/adoptions.js"));
         }
     }
 }

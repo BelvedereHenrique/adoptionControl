@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using Desafio.Contracts;
 using System.Collections.Generic;
 using Desafio.Repository.Adopter;
@@ -43,6 +44,8 @@ namespace Desafio.Services.Adopter
         {
             try
             {
+                adopter.ID = Guid.NewGuid();
+                adopter.CreatedOn = DateTime.Now;
                 _adopterRepository.Add(adopter);
                 return new OperationResult(true, "Adopter added.");
             }

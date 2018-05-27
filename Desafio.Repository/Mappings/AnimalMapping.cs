@@ -12,11 +12,11 @@ namespace Desafio.Repository.Mappings
             Property(x => x.ID).HasColumnName("ID");
 
             Property(x => x.Name).HasColumnName("Name").IsRequired();
-            Property(x => x.Type).HasColumnName("Type").IsRequired();
-
+            Property(x => x.AnimalType).HasColumnName("AnimalType").IsRequired();
             Property(x => x.Age).HasColumnName("Age");
             Property(x => x.Weight).HasColumnName("Weight");
 
+            HasOptional(x => x.Adopter).WithMany(x => x.Animals).HasForeignKey(x => x.AdoptedBy);
         }
     }
 }

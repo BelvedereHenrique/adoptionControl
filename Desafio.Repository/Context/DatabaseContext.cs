@@ -8,14 +8,12 @@ namespace Desafio.Repository.Context
     {
         public DbSet<AnimalContract> Animals { get; set; }
         public DbSet<AdopterContract> Adopters { get; set; }
-        public DbSet<AdoptionContract> Adoptions { get; set; }
 
         public DatabaseContext() :base("DefaultConnection"){}
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Configurations.Add(Mapper.Adopter);
-            modelBuilder.Configurations.Add(Mapper.Adoption);
             modelBuilder.Configurations.Add(Mapper.Animal);
         }
 
@@ -23,5 +21,6 @@ namespace Desafio.Repository.Context
         {
             return new DatabaseContext();
         }
+        
     }
 }

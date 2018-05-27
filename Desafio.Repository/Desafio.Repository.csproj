@@ -59,6 +59,11 @@
     <Compile Include="Mappings\AdoptionMapping.cs" />
     <Compile Include="Mappings\AnimalMapping.cs" />
     <Compile Include="Mappings\Mapper.cs" />
+    <Compile Include="Migrations\201805271735129_initial.cs" />
+    <Compile Include="Migrations\201805271735129_initial.Designer.cs">
+      <DependentUpon>201805271735129_initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -72,7 +77,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Migrations\" />
+    <EmbeddedResource Include="Migrations\201805271735129_initial.resx">
+      <DependentUpon>201805271735129_initial.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -6,7 +6,7 @@
         {
             Success = success;
             Message = message;
-            Result = Result;
+            Result = result;
         }
         public bool Success { get; set; }
         public T Result { get; set; }

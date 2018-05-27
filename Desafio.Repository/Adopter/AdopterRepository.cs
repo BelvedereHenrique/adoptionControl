@@ -14,7 +14,10 @@ namespace Desafio.Repository.Adopter
             {
                 using (var context = new DatabaseContext())
                 {
-                    return context.Adopters.First(x=>x.ID == adopterId);
+                    var adopter = context.Adopters.Include("Animals").First(x => x.ID == adopterId);
+                    //this prevents cyclic reference
+                    adopter.Animals = null;
+                    return adopter;
                 }
             }
             catch (Exception e)
@@ -29,7 +32,10 @@ namespace Desafio.Repository.Adopter
             {
                 using (var context = new DatabaseContext())
                 {
-                    return context.Adopters.ToList();
+                    var adopters = context.Adopters.Include("Animals").ToList();
+                    //this prevents cyclic reference
+                    adopters.ForEach(x => x.Animals = null);
+                    return adopters;
                 }
             }
             catch (Exception e)
@@ -60,7 +66,10 @@ namespace Desafio.Repository.Adopter
             {
                 using (var context = new DatabaseContext())
                 {
-                    var adopter = context.Adopters.First(x=>x.ID == adopterID);
+                    var adopter = context.Adopters.First(x => x.ID == adopterID);
+                    if (context.Animals.Any(x=>x.AdoptedBy == adopterID))
+                        throw new ArgumentException("Cannot delete Adopters who have current adoptions");
+               
                     context.Adopters.Remove(adopter);
                     context.SaveChanges();
                 }
@@ -97,7 +106,7 @@ namespace Desafio.Repository.Adopter
             oldAdopter.Phone = newAdopter.Phone;
             oldAdopter.State = newAdopter.State;
             oldAdopter.AddressLine = newAdopter.AddressLine;
-            oldAdopter.Email = newAdopter.AddressLine;
+            oldAdopter.Email = newAdopter.Email;
         }
     }
 }

@@ -3,7 +3,7 @@ using System.Data.Entity.ModelConfiguration;
 
 namespace Desafio.Repository.Mappings
 {
-    internal class AdopterMapping: EntityTypeConfiguration<AdopterContract>
+    internal class AdopterMapping : EntityTypeConfiguration<AdopterContract>
     {
         public AdopterMapping()
         {
@@ -17,6 +17,8 @@ namespace Desafio.Repository.Mappings
             Property(x => x.AddressLine).HasColumnName("AddressLine").IsRequired();
             Property(x => x.Phone).HasColumnName("Phone").IsRequired();
             Property(x => x.State).HasColumnName("State").IsRequired();
+            Property(x => x.CreatedOn).HasColumnName("CreatedOn");
+            HasMany(x => x.Animals);
 
         }
     }

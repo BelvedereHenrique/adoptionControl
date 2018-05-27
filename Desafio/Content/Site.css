@@ -22,3 +22,13 @@ select,
 textarea {
     max-width: 280px;
 }
+.input-group{
+    margin:20px;
+}
+.clickable {
+    cursor: pointer !important;
+    padding-left:10px;
+}
+.buttonsColumn{
+    text-align:center;
+}

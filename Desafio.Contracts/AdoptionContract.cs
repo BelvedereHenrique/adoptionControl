@@ -1,29 +1,19 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
 
 namespace Desafio.Contracts
 {
     public class AdoptionContract
     {
-        public AdoptionContract(Guid adopterID, Guid animalID, DateTime date)
+        public AdopterContract Adopter { get; set; }
+        public AnimalContract Animal { get; set; }
+        public AdoptionContract(AdopterContract Adopter, AnimalContract Animal)
         {
-            ID = Guid.NewGuid();
-            AnimalID = animalID;
-            AdopterID = AdopterID;
-            Date = date;
+            this.Adopter = Adopter;
+            this.Animal = Animal;
         }
+        public AdoptionContract()
+        {
 
-        [Required(ErrorMessage = "Adoption ID is required.")]
-        public Guid? ID { get; set; }
-
-        [Required(ErrorMessage = "Adoption Animal is required.")]
-
-        public Guid AnimalID { get; set; }
-
-        [Required(ErrorMessage = "Adoption Adopter is required.")]
-        public Guid AdopterID { get; set; }
-
-        [Required(ErrorMessage = "Adoption Adopter is required.")]
-        public DateTime Date { get; set; }
+        }
     }
 }

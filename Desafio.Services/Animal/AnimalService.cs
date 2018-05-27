@@ -2,6 +2,7 @@
 using Desafio.Contracts;
 using System.Collections.Generic;
 using Desafio.Repository.Animal;
+using System.Linq;
 
 namespace Desafio.Services.Animal
 {
@@ -17,6 +18,8 @@ namespace Desafio.Services.Animal
         {
             try
             {
+                animal.ID = Guid.NewGuid();
+                animal.CreatedOn = DateTime.Now;
                 _animalRepository.Add(animal);
                 return new OperationResult(true, "Animal added.");
             }

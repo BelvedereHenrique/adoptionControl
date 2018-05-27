@@ -13,26 +13,21 @@ namespace Desafio.Controllers
         {
             _adopterService = service;
         }
-        public HomeController()
-        {
-
-        }
         public ActionResult Index()
         {
-
             return View();
         }
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
+            ViewBag.Message = "Projeto para controle de adoção de animais.";
 
             return View();
         }
 
         public ActionResult Contact()
         {
-            ViewBag.Message = "Your contact page.";
+            ViewBag.Message = "Bruno Henrique Belvedere";
 
             return View();
         }
