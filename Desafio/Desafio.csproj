@@ -265,9 +265,6 @@
     <Content Include="Scripts\popper-utils.min.js" />
     <Content Include="Scripts\popper.js" />
     <Content Include="Scripts\popper.min.js" />
-    <Content Include="Scripts\Site\adoptions.js" />
-    <Content Include="Scripts\Site\animals.js" />
-    <Content Include="Scripts\Site\adopters.js" />
     <Content Include="Scripts\umd\popper-utils.js" />
     <Content Include="Scripts\umd\popper-utils.min.js" />
     <Content Include="Scripts\umd\popper.js" />
@@ -314,9 +311,11 @@
     <Content Include="Scripts\popper.js.map" />
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
-    <Content Include="Views\Adopters\Index.cshtml" />
     <Content Include="Views\Animals\Index.cshtml" />
     <Content Include="Views\Adoptions\Index.cshtml" />
+    <Content Include="Views\Adopters\New.cshtml" />
+    <Content Include="Views\Adopters\Edit.cshtml" />
+    <Content Include="Views\Adopters\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

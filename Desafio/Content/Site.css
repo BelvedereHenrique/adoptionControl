@@ -25,9 +25,12 @@ textarea {
 .input-group{
     margin:20px;
 }
+.col-md-2 {
+    padding-right:100px;
+}
 .clickable {
     cursor: pointer !important;
-    padding-left:10px;
+    padding-left: 10px;
 }
 .buttonsColumn{
     text-align:center;

@@ -15,40 +15,58 @@ namespace Desafio.Controllers
         {
             _adopterService = adopterService;
         }
+
         // GET: Adotpers
         public ActionResult Index()
+        {
+            var adopters = _adopterService.GetAll().Result;
+            return View(adopters);
+        }
+        
+        public ActionResult New()
         {
             return View();
         }
 
-        public JsonResult GetAll()
+        [HttpPost]
+        public ActionResult New(AdopterContract adopter)
         {
-            var result = _adopterService.GetAll();
-            return Json(result, JsonRequestBehavior.AllowGet);
+            try
+            {
+                _adopterService.Add(adopter);
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return View();
+            }
         }
 
-        public JsonResult Get(string adopterID)
+        public ActionResult Edit(Guid adopterID)
         {
-            var result = _adopterService.Get(Guid.Parse(adopterID));
-            return Json(result, JsonRequestBehavior.AllowGet);
+            return View(_adopterService.Get(adopterID));
         }
 
-        public JsonResult Add(AdopterContract adopter)
+
+        [HttpPost]
+        public ActionResult Edit(AdopterContract adopter)
         {
-            var result = _adopterService.Add(adopter);
-            return Json(result);
+            try
+            {
+                _adopterService.Edit(adopter);
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return View();
+            }
         }
 
-        public JsonResult Edit(AdopterContract adopter)
+        public ActionResult Remove(Guid id)
         {
-            var result = _adopterService.Edit(adopter);
-            return Json(result, JsonRequestBehavior.AllowGet);
+            _adopterService.Delete(id);
+            return RedirectToAction("Index");
         }
-
-        public JsonResult Remove(string adopterID)
-        {
-            var result = _adopterService.Delete(Guid.Parse(adopterID));
-            return Json(result, JsonRequestBehavior.AllowGet);
-        }
+        
     }
 }
