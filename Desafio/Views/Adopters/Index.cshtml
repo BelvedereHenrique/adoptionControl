@@ -1,14 +1,11 @@
 ﻿@model IEnumerable<Desafio.Contracts.AdopterContract>
-<h1>Cliente</h1>
 
 <h2>Adopters</h2>
 <div class="panel panel-default">
-    <!-- Default panel contents -->
     <div class="panel-heading" style="padding:20px">
         <b>Adopters List</b>
-        <button type="button" class="btn-sm pull-right" style="text-decoration:none; color:red">@Html.ActionLink("Add new", "New")</button>
+        <button type="button" class="btn-sm pull-right">@Html.ActionLink("Add new", "New")</button>
     </div>
-    <!-- Table -->
     <table id="adopters_table" class="table">
         <thead>
             <tr>

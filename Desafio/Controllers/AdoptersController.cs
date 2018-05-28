@@ -42,14 +42,14 @@ namespace Desafio.Controllers
             }
         }
 
-        public ActionResult Edit(Guid adopterID)
+        public ActionResult Edit(string id)
         {
-            return View(_adopterService.Get(adopterID));
+            return View(_adopterService.Get(Guid.Parse(id)).Result);
         }
 
 
         [HttpPost]
-        public ActionResult Edit(AdopterContract adopter)
+        public ActionResult Edit(string id, AdopterContract adopter)
         {
             try
             {

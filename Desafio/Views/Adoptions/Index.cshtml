@@ -1,104 +1,41 @@
-﻿
-@{
-    ViewBag.Title = "Index";
-}
-@if (Request.IsAuthenticated)
-{
-    <h2>Adoptions</h2>
-    <div class="panel panel-default">
-        <!-- Default panel contents -->
-        <div class="panel-heading" style="padding:20px">
-            <b>Adopters List</b>
-            <button type="button" class="btn btn-success btn-sm pull-right" data-toggle="modal" data-target="#addModal" onclick="PopulateSelects()">Add new</button>
-        </div>
-        <!-- Table -->
-        <table id="adoptions_table" class="table">
-            <thead>
+﻿@model IEnumerable<Desafio.Contracts.AdoptionContract>
+
+<h2>Adoptions</h2>
+<div class="panel panel-default">
+    <div class="panel-heading" style="padding:20px">
+        <b>Adopters List</b>
+        <button type="button" class="btn-sm pull-right">@Html.ActionLink("Add new", "New")</button>
+    </div>
+    <table id="adoptions_table" class="table">
+        <thead>
+            <tr>
+
+                <th>
+                    Adopter name
+                </th>
+                <th>
+                    Animal name
+                </th>
+                <th>
+
+                </th>
+            </tr>
+        </thead>
+        <tbody id="adoptions-table-tr">
+            @foreach (var item in Model)
+            {
                 <tr>
-
-                    <th>
-                        Adopter name
-                    </th>
-                    <th>
-                        Animal name
-                    </th>
-                    <th>
-
-                    </th>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Adopter.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modeItem => item.Animal.Name)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Remove", "Remove", new { id = item.Animal.ID }, new { onclick = "return confirm('Confirm delete ?');" })
+                    </td>
                 </tr>
-            </thead>
-            <tbody id="adoptions-table-tr"></tbody>
-        </table>
-    </div>
-    <h2>Animals free to adoption</h2>
-    <div class="panel panel-default">
-        <!-- Default panel contents -->
-        <div class="panel-heading" style="padding:20px">
-            <b>Animals List</b>
-        </div>
-        <!-- Table -->
-        <table id="animals_table" class="table">
-            <thead>
-                <tr>
-
-                    <th>
-                        Name
-                    </th>
-                    <th>
-                        Type
-                    </th>
-                    <th>
-                        Weight
-                    </th>
-                    <th>
-                        Age
-                    </th>
-                </tr>
-            </thead>
-            <tbody id="animals-table-tr"></tbody>
-        </table>
-    </div>
-    <!-- Trigger the modal with a button -->
-
-    <!-- Modal -->
-    <div id="addModal" class="modal fade" role="dialog">
-        <div class="modal-dialog">
-
-            <!-- Modal content-->
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Add new adoption</h4>
-                </div>
-                <form class="needs-validation">
-
-                    <div class="modal-body">
-                        <div class="alert alert-danger" id="addFulfill" role="alert" style="display:none;">Please, fulfill all required fields.</div>
-                        <div class="input-group">
-                           <label>Adopter</label>
-                           <select class="form-control" id="adopterSelect"></select>
-                        </div>
-                        <div class="input-group">
-                            <label>Animal</label>
-                            <select class="form-control" id="animalSelect"></select>
-                        </div>
-                    </div>
-
-                </form>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-success" onclick="AdoptClick()">Add</button>
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                </div>
-            </div>
-
-        </div>
-    </div>
-
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/Scripts/Adoptions")
-
-}
-else
-{
-    <p>Please, authenticate</p>
-}
+            }
+        </tbody>
+    </table>
+</div>

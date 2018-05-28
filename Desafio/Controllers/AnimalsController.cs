@@ -13,40 +13,51 @@ namespace Desafio.Controllers
             _animalService = animalService;
         }
 
-        
         public ActionResult Index()
+        {
+            return View(_animalService.GetAll().Result);
+        }
+
+        public ActionResult New()
         {
             return View();
         }
 
-        public JsonResult GetAll()
+        [HttpPost]
+        public ActionResult New(AnimalContract animal)
         {
-            var result = _animalService.GetAll();
-            return Json(result, JsonRequestBehavior.AllowGet);
+            try
+            {
+                _animalService.Add(animal);
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return View();
+            }
+        }
+        public ActionResult Edit(Guid id)
+        {
+            return View(_animalService.Get(id).Result);
+        }
+        [HttpPost]
+        public ActionResult Edit(string id, AnimalContract animal)
+        {
+            try
+            {
+                _animalService.Edit(animal);
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return View();
+            }
         }
 
-        public JsonResult Get(string animalID)
+        public ActionResult Delete(Guid id)
         {
-            var result = _animalService.Get(Guid.Parse(animalID));
-            return Json(result, JsonRequestBehavior.AllowGet);
-        }
-
-        public JsonResult Add(AnimalContract animal)
-        {
-            var result = _animalService.Add(animal);
-            return Json(result);
-        }
-
-        public JsonResult Edit(AnimalContract animal)
-        {
-            var result = _animalService.Edit(animal);
-            return Json(result, JsonRequestBehavior.AllowGet);
-        }
-
-        public JsonResult Remove(string animalID)
-        {
-            var result = _animalService.Delete(Guid.Parse(animalID));
-            return Json(result, JsonRequestBehavior.AllowGet);
+            _animalService.Delete(id);
+            return RedirectToAction("Index");
         }
     }
 }
