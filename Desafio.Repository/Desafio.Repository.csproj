@@ -56,7 +56,6 @@
     <Compile Include="Context\DatabaseContext.cs" />
     <Compile Include="IDatabaseOperations.cs" />
     <Compile Include="Mappings\AdopterMapping.cs" />
-    <Compile Include="Mappings\AdoptionMapping.cs" />
     <Compile Include="Mappings\AnimalMapping.cs" />
     <Compile Include="Mappings\Mapper.cs" />
     <Compile Include="Migrations\201805271735129_initial.cs" />

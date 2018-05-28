@@ -2,8 +2,6 @@
 using System.Web.Mvc;
 using Desafio.Contracts;
 using Desafio.Services.Adopter;
-using System.Collections.Generic;
-using Newtonsoft.Json;
 
 namespace Desafio.Controllers
 {
@@ -15,7 +13,7 @@ namespace Desafio.Controllers
         {
             _adopterService = adopterService;
         }
-        // GET: Adotpers
+
         public ActionResult Index()
         {
             return View();

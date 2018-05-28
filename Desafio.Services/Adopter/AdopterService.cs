@@ -40,6 +40,7 @@ namespace Desafio.Services.Adopter
                 return new OperationResult<List<AdopterContract>>(false, e.Message, null);
             }
         }
+
         public OperationResult Add(AdopterContract adopter)
         {
             try

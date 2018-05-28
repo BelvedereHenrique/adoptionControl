@@ -1,6 +1,4 @@
-﻿using Desafio.Contracts;
-
-namespace Desafio.Repository.Mappings
+﻿namespace Desafio.Repository.Mappings
 {
     internal static class Mapper
     {

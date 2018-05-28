@@ -16,10 +16,13 @@ namespace Desafio.Contracts
         public AnimalContract(){}
         
         public Guid ID { get; set; }
+
         [Required(ErrorMessage = "Required")]
         public string Name { get; set; }
+
         [Required(ErrorMessage = "Required")]
         public string AnimalType { get; set; }
+
         public float Weight { get; set; }
         public int Age { get; set; }
         public DateTime CreatedOn { get; set; }

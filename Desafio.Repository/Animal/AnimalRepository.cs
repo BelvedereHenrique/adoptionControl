@@ -15,7 +15,6 @@ namespace Desafio.Repository.Animal
                 using (var context = new DatabaseContext())
                 {
                     var animal = context.Animals.Include("Adopter").First(x=>x.ID == animalID);
-                    //this prevents cyclic reference
                     animal.Adopter = null;
                     return animal;
                 }
@@ -33,7 +32,6 @@ namespace Desafio.Repository.Animal
                 using (var context = new DatabaseContext())
                 {
                     var animals = context.Animals.Include("Adopter").ToList();
-                    //this prevents cyclic reference
                     animals.ForEach(x=>x.Adopter = null);
                     return animals;
                 }

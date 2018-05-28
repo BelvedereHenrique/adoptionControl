@@ -1,6 +1,6 @@
 ﻿using Desafio.Contracts;
-using Desafio.Repository.Mappings;
 using System.Data.Entity;
+using Desafio.Repository.Mappings;
 
 namespace Desafio.Repository.Context
 {

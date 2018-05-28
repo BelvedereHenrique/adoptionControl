@@ -1,16 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
+using Microsoft.Owin;
+using Desafio.Models;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using System.Web;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
-using Microsoft.AspNet.Identity.Owin;
-using Microsoft.Owin;
 using Microsoft.Owin.Security;
-using Desafio.Models;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace Desafio
 {
@@ -18,7 +14,6 @@ namespace Desafio
     {
         public Task SendAsync(IdentityMessage message)
         {
-            // Conecte o seu serviço de email aqui para enviar um email.
             return Task.FromResult(0);
         }
     }
@@ -27,12 +22,10 @@ namespace Desafio
     {
         public Task SendAsync(IdentityMessage message)
         {
-            // Conecte seu serviço de SMS aqui para enviar uma mensagem de texto.
             return Task.FromResult(0);
         }
     }
 
-    // Configure o gerenciador de usuários do aplicativo usado nesse aplicativo. O UserManager está definido no ASP.NET Identity e é usado pelo aplicativo.
     public class ApplicationUserManager : UserManager<ApplicationUser>
     {
         public ApplicationUserManager(IUserStore<ApplicationUser> store)
@@ -43,14 +36,12 @@ namespace Desafio
         public static ApplicationUserManager Create(IdentityFactoryOptions<ApplicationUserManager> options, IOwinContext context) 
         {
             var manager = new ApplicationUserManager(new UserStore<ApplicationUser>(context.Get<ApplicationDbContext>()));
-            // Configurar a lógica de validação para nomes de usuário
             manager.UserValidator = new UserValidator<ApplicationUser>(manager)
             {
                 AllowOnlyAlphanumericUserNames = false,
                 RequireUniqueEmail = true
             };
 
-            // Configurar a lógica de validação para senhas
             manager.PasswordValidator = new PasswordValidator
             {
                 RequiredLength = 6,
@@ -60,13 +51,10 @@ namespace Desafio
                 RequireUppercase = true,
             };
 
-            // Configurar padrões de bloqueio de usuário
             manager.UserLockoutEnabledByDefault = true;
             manager.DefaultAccountLockoutTimeSpan = TimeSpan.FromMinutes(5);
             manager.MaxFailedAccessAttemptsBeforeLockout = 5;
 
-            // Registre dois provedores de autenticação de fator. Este aplicativo usa Telefone e Emails como um passo para receber um código para verificar o usuário
-            // Você pode gravar seu próprio provedor e conectá-lo aqui.
             manager.RegisterTwoFactorProvider("Código de telefone", new PhoneNumberTokenProvider<ApplicationUser>
             {
                 MessageFormat = "Seu código de segurança é {0}"
@@ -88,7 +76,6 @@ namespace Desafio
         }
     }
 
-    // Configure o gerenciador de login do aplicativo que é usado neste aplicativo.
     public class ApplicationSignInManager : SignInManager<ApplicationUser, string>
     {
         public ApplicationSignInManager(ApplicationUserManager userManager, IAuthenticationManager authenticationManager)

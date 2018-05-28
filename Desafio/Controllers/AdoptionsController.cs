@@ -1,6 +1,6 @@
-﻿using Desafio.Services.Adoption;
-using System;
+﻿using System;
 using System.Web.Mvc;
+using Desafio.Services.Adoption;
 
 namespace Desafio.Controllers
 {

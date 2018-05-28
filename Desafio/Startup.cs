@@ -1,5 +1,5 @@
-﻿using Microsoft.Owin;
-using Owin;
+﻿using Owin;
+using Microsoft.Owin;
 
 [assembly: OwinStartupAttribute(typeof(Desafio.Startup))]
 namespace Desafio

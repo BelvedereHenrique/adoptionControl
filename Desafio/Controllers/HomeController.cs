@@ -1,6 +1,4 @@
-﻿using System;
-using System.Web.Mvc;
-using Desafio.Contracts;
+﻿using System.Web.Mvc;
 using Desafio.Services.Adopter;
 
 namespace Desafio.Controllers
@@ -21,14 +19,12 @@ namespace Desafio.Controllers
         public ActionResult About()
         {
             ViewBag.Message = "Projeto para controle de adoção de animais.";
-
             return View();
         }
 
         public ActionResult Contact()
         {
             ViewBag.Message = "Bruno Henrique Belvedere";
-
             return View();
         }
     }

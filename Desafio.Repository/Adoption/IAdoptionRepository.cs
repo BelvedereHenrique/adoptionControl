@@ -1,13 +1,9 @@
-﻿using Desafio.Contracts;
-using System;
-using System.Collections.Generic;
+﻿using System;
 
 namespace Desafio.Repository.Adoption
 {
     public interface IAdoptionRepository
     {
-        AdoptionContract Get(Guid animalID);
-        List<AdoptionContract> GetAll();
         void Adopt(Guid adopterID, Guid animalID);
     }
 }

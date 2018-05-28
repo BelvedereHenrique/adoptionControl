@@ -21,18 +21,6 @@ namespace Desafio.Services.Adoption
             _adopterService = adopterService;
         }
 
-        public OperationResult<AdoptionContract> Get(Guid adoptionID)
-        {
-            try
-            {
-                var result = _adoptionRepository.Get(adoptionID);
-                return new OperationResult<AdoptionContract>(true, "Success", result);
-            }
-            catch (Exception e)
-            {
-                return new OperationResult<AdoptionContract>(false, e.Message, null);
-            }
-        }
 
         public OperationResult<List<AdoptionContract>> GetAll()
         {

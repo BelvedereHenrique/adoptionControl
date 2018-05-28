@@ -48,7 +48,6 @@
     <Compile Include="Animal\IAnimalService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\Desafio.Contracts\Desafio.Contracts.csproj">
       <Project>{3dc3a650-5c81-4cdf-9092-7beccda7560b}</Project>
@@ -59,5 +58,6 @@
       <Name>Desafio.Repository</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

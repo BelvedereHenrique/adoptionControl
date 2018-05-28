@@ -1,19 +1,18 @@
-using Desafio.Controllers;
+using Unity;
 using Desafio.Models;
+using System.Web.Mvc;
+using Unity.Injection;
+using Unity.AspNet.Mvc;
+using System.Data.Entity;
+using Desafio.Controllers;
+using Desafio.Services.Animal;
+using Desafio.Services.Adopter;
+using Microsoft.AspNet.Identity;
+using Desafio.Repository.Animal;
+using Desafio.Services.Adoption;
 using Desafio.Repository.Adopter;
 using Desafio.Repository.Adoption;
-using Desafio.Repository.Animal;
-using Desafio.Services.Adopter;
-using Desafio.Services.Adoption;
-using Desafio.Services.Animal;
-using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
-using System;
-using System.Data.Entity;
-using System.Web.Mvc;
-using Unity;
-using Unity.AspNet.Mvc;
-using Unity.Injection;
 
 namespace Desafio
 {

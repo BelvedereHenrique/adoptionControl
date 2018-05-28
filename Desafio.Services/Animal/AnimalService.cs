@@ -1,14 +1,14 @@
 ﻿using System;
 using Desafio.Contracts;
-using System.Collections.Generic;
 using Desafio.Repository.Animal;
-using System.Linq;
+using System.Collections.Generic;
 
 namespace Desafio.Services.Animal
 {
     public class AnimalService : IAnimalService
     {
         private readonly IAnimalRepository _animalRepository;
+
         public AnimalService(IAnimalRepository animalRespository)
         {
             _animalRepository = animalRespository;
