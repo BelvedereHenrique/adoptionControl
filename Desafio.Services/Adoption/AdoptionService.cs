@@ -21,13 +21,15 @@ namespace Desafio.Services.Adoption
             _adopterService = adopterService;
         }
 
-
         public OperationResult<List<AdoptionContract>> GetAll()
         {
             try
             {
-                var animals = _animalService.GetAll().Result
-                    .Where(x => x.AdoptedBy != null).ToList();
+                var animals = _animalService.GetAll()
+                    .Result
+                    .Where(x => x.AdoptedBy != null)
+                    .ToList();
+
                 var adoptions = new List<AdoptionContract>();
                 foreach (var item in animals)
                 {
@@ -50,6 +52,9 @@ namespace Desafio.Services.Adoption
         {
             try
             {
+                if (adopterID == Guid.Empty || animalID == Guid.Empty)
+                    return new OperationResult(false, "Invalid ID.");
+
                 _adoptionRepository.Adopt(adopterID, animalID);
                 return new OperationResult(true, "Success");
             }
@@ -63,6 +68,9 @@ namespace Desafio.Services.Adoption
         {
             try
             {
+                if (adoptionID == Guid.Empty)
+                    return new OperationResult(false, "InvalidID.");
+
                 var animal = _animalService.Get(adoptionID);
                 animal.Result.AdoptedBy = null;
                 _animalService.Edit(animal.Result);

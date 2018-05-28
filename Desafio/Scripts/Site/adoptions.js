@@ -4,14 +4,13 @@ GetFreeAnimals(function (result) {
     PopulateAnimalTable(result);
 });
 
-function RemoveAdoption(tr)
-{
+function RemoveAdoption(tr) {
     var id = tr.parentElement.parentElement.id;
     $.ajax(
         {
             type: "POST",
             url: "/Adoptions/RemoveAdoption",
-            data: {adoptionId:id},
+            data: { adoptionId: id },
             success: function (result) {
                 if (result.Success) {
                     CleanTable($("#adoptions-table-tr"));
@@ -82,21 +81,24 @@ function GetAdopters(callback) {
 function AdoptClick() {
     var adopterId = $('#adopterSelect option:selected').val();
     var animalId = $('#animalSelect option:selected').val();
-
-    Adopt(function (result) {
-        GetAdoptions();
-        GetFreeAnimals(function (result) {
-            $(result).each(function () {
-                animalSelect.append("<option value=" + this.ID + ">" + this.Name + "</option>");
-            })
-        });
-        $('#addModal').modal('toggle');
-        GetAdoptions();
-        GetFreeAnimals(function (result) {
-            CleanTable($("#animals-table-tr"));
-            PopulateAnimalTable(result);
-        });
-    }, adopterId, animalId);
+    if (adopterId !== undefined && animalId !== undefined) {
+        Adopt(function (result) {
+            GetAdoptions();
+            GetFreeAnimals(function (result) {
+                $(result).each(function () {
+                    animalSelect.append("<option value=" + this.ID + ">" + this.Name + "</option>");
+                })
+            });
+            $('#addModal').modal('toggle');
+            GetAdoptions();
+            GetFreeAnimals(function (result) {
+                CleanTable($("#animals-table-tr"));
+                PopulateAnimalTable(result);
+            });
+        }, adopterId, animalId);
+    } else {
+        alert("Please select both animal and adopter.")
+    }
 
 }
 

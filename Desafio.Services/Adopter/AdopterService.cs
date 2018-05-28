@@ -45,6 +45,9 @@ namespace Desafio.Services.Adopter
         {
             try
             {
+                if (adopter == null)
+                    return new OperationResult(false, "Null contract.");
+
                 adopter.ID = Guid.NewGuid();
                 adopter.CreatedOn = DateTime.Now;
                 _adopterRepository.Add(adopter);
@@ -60,6 +63,9 @@ namespace Desafio.Services.Adopter
         {
             try
             {
+                if (adopterID == Guid.Empty)
+                    return new OperationResult(false, "Empty ID.");
+
                 _adopterRepository.Delete(adopterID);
                 return new OperationResult(true, "Adopter removed.");
             }
@@ -73,6 +79,9 @@ namespace Desafio.Services.Adopter
         {
             try
             {
+                if (adopter == null)
+                    return new OperationResult(false, "Null contract.");
+
                 _adopterRepository.Edit(adopter);
                 return new OperationResult(true, "Adopter edited.");
             }

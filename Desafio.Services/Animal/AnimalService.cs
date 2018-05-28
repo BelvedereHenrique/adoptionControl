@@ -18,6 +18,9 @@ namespace Desafio.Services.Animal
         {
             try
             {
+                if (animal == null)
+                    return new OperationResult(false, "Null contract.");
+
                 animal.ID = Guid.NewGuid();
                 animal.CreatedOn = DateTime.Now;
                 _animalRepository.Add(animal);
@@ -33,6 +36,9 @@ namespace Desafio.Services.Animal
         {
             try
             {
+                if (animalID == Guid.Empty)
+                    return new OperationResult(false, "Empty ID.");
+
                 _animalRepository.Delete(animalID);
                 return new OperationResult(true, "Animal removed.");
             }
@@ -46,6 +52,9 @@ namespace Desafio.Services.Animal
         {
             try
             {
+                if (animal == null)
+                    return new OperationResult(false, "Null contract.");
+
                 _animalRepository.Edit(animal);
                 return new OperationResult(true, "Animal edited.");
             }
